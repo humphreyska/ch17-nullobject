@@ -7,9 +7,7 @@
 public class ListClient {
     public static void main(String[] args) {
 	ListNode list;
-	list = new IntListNode(1, 
-		     new IntListNode(22, 
-			  new IntListNode(333, null)));
+	list = new IntListNode(1, new IntListNode(22, new IntListNode(333, null)));
 	list.print();
 	System.out.println("List length = " + list.length());
     }
@@ -20,11 +18,23 @@ abstract class ListNode {
     //  accessor, mutator.
     private ListNode next;
     public ListNode next() { return next; }
-    public void setNext(ListNode newNext) { next = newNext; }
+    public void setNext(ListNode newNext) { if (newNext == null){next = ListNode.NULL;}
+    else
+        next = newNext; }
+    
+    //Null object
+    public static final ListNode NULL = new NullListNode();
+    static class NullListNode extends ListNode{
+        public void print()
+        {
+            return;
+            //System.out.println("NULL");
+        }
+    }
 
     // All XxxListNode classes need length method
     public int length() { 
-	if (next() == null) return 1;
+	if (next() == ListNode.NULL) return 1;
 	else return 1 + next().length();
     }
 
@@ -50,6 +60,8 @@ class IntListNode extends ListNode {
     // Required interface behaviors
     public void print() {
 	System.out.println(value);
-	if (next() != null) next().print();
+	next().print();
     }
+    
 }
+
