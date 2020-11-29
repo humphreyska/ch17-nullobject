@@ -47,7 +47,7 @@ class IntListNode extends ListNode {
     // next field is inherited
 
     // Constructors
-    public IntListNode() { setValue(0); setNext(ListNode.NULL); }
+    public IntListNode() { setValue(0); setNext(null); }
     public IntListNode(int value, IntListNode next) {
 	setValue(value);
 	setNext(next);
